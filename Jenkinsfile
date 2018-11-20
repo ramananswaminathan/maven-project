@@ -1,8 +1,8 @@
-pipeline {
+node {
     	
-	agent any
+
 	
-     stages{
+     try {
          stage('Init'){
              steps{
                 echo "Testing...."
@@ -21,23 +21,15 @@ pipeline {
              }
 			 
 		}
-     }		
-          
-		  post {
-   
-			success {
-				echo "success"
-					}
-			failure {
-				
-				always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-         echo "failiure"
-		}
-				
-				 
-					}
-				}
+    	
+    } catch (err) {
+
+        currentBuild.result = 'FAILED'
+
+        throw err
+
+    }      
+		  
 
   }
 		  
