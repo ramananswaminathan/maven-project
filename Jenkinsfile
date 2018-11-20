@@ -30,8 +30,11 @@ pipeline {
 					}
 			failure {
 				
-				mail to:"ramanan.swaminathan@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
-				echo "failiure"
+				always {
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+         echo "failiure"
+		}
+				
 				 
 					}
 				}
