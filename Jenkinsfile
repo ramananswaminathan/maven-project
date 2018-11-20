@@ -30,6 +30,8 @@ pipeline {
 					}
 			failure {
 				echo "failiure"
+				 mail to:"ramanan.swaminathan@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
+
 					}
 				}
 
