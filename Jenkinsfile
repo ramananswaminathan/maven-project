@@ -1,5 +1,12 @@
 pipeline {
-     agent any
+     
+	currentBuild.result = "SUCCESS"
+	
+	agent any
+	
+	 try {
+	
+	
      stages{
          stage('Init'){
              steps{
@@ -18,6 +25,22 @@ pipeline {
                 echo "Code Deployed...."
              }
           }
-       }
-    }
+       
+	   stage('Cleanup'){
+	   	         steps{
+                echo "Build Successful...."
+             }
+	      }
+    	
+      }	
+	 } 
+	 catch (err) {
+       currentBuild.result = "FAILURE"
+       throw err	 
+	  	  
+	}
+	
+}
+	
+	
      
