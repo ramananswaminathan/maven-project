@@ -29,9 +29,10 @@ pipeline {
 				echo "success"
 					}
 			failure {
+				
+				mail to:"ramanan.swaminathan@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
 				echo "failiure"
-				 mail to:"ramanan.swaminathan@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
-
+				 
 					}
 				}
 
