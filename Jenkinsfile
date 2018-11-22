@@ -1,44 +1,101 @@
-node {
-    	
+pipeline {
 
-	
-     try {
-         stage('Init'){
+	agent any
+
+     stages{
+
+        stage('Init'){
+
              steps{
+
                 echo "Testing...."
+
              }
-          }
- 
-         stage('Build'){
-             steps{
-                echo Building...."
-             }
+
           }
 
-	 stage('Deploy'){
+        stage('Build'){
+
              steps{
+
+                echo "Building...."
+
+             }
+
+          }
+
+
+
+		stage('Deploy'){
+
+             steps{
+
                 echo "Code Deployed...."
+
              }
+
 			 
+
 		}
-    	
-    } catch (err) {
 
-        currentBuild.result = 'FAILED'
+     }		
 
-        throw err
+          
 
-    }      
-		  
+		  post {
+
+   
+
+			success {
+
+				echo "success"
+
+					}
+
+			failure {
+
+				echo "failiure"
+
+					}
+
+				}
+
+
 
   }
+
 		  
+
 		  
+
 		  
+
 		  
+
 		  
+
 		  
+
 	
+
 	   
+
 	
+
      
+
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+ 
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+
+Press h to open a hovercard with more details. 
