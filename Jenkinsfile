@@ -41,23 +41,10 @@ pipeline {
      }		
 
           
-
 		  post {
 
-   
-
-			success {
-
-				echo "success"
-
-					}
-
-			failure {
-
-				echo "failiure"
-
-					}
-
-				}
+           	 always {
+            emailext body: 'A Test EMail 33', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
 
   }
