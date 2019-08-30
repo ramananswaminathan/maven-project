@@ -1,10 +1,13 @@
 pipeline {
     agent any
+    tools {
+    maven 'M3'
+   }
     stages{
         stage('Build'){
             steps {
-                sh '"$MVN_HOME/bin/mvn"  -Dmaven.test.failure.ignore clean package'             
-                  }
+             sh 'mvn clean package'
+            }
             post {
                 success {
                     echo 'Now Archiving...'
@@ -14,3 +17,4 @@ pipeline {
         }
     }
 }
+
