@@ -18,7 +18,7 @@ pipeline {
 
         stage('Deploy Staging') {
           steps {
-                   build job: 'deploy-to-staging'
+                  sh 'cp **/target/*.war /opt/tomcat/webapps'
                 }
           }
     }
