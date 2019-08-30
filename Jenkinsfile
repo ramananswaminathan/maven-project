@@ -1,51 +1,16 @@
 pipeline {
-
-	agent any
-
-     stages{
-
-        stage('Init'){
-
-             steps{
-
-                echo "Testing...."
-
-             }
-
-          }
-
+    agent any
+    stages{
         stage('Build'){
-
-             steps{
-
-                echo "Building...."
-
-             }
-
-          }
-
-
-
-		stage('Deploy'){
-
-             steps{
-
-                echo "Code Deployed...."
-
-             }
-
-			 
-
-		}
-
-     }		
-
-          
-		  post {
-
-           	 always {
-            emailext body: 'A Test EMail 33', recipientProviders: [ schwami.iyer@gmail.com ], subject: 'Test'
+            steps {
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Now Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
         }
-
-  }
- } 
+    }
+}
