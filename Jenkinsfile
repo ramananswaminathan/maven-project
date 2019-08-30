@@ -3,8 +3,8 @@ pipeline {
     stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
-            }
+                sh '"$MVN_HOME/bin/mvn"  -Dmaven.test.failure.ignore clean package'             
+                  }
             post {
                 success {
                     echo 'Now Archiving...'
